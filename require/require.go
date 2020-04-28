@@ -1,15 +1,16 @@
 /*
-* CODE GENERATED AUTOMATICALLY WITH github.com/stretchr/testify/_codegen
+* CODE GENERATED AUTOMATICALLY WITH github.com/RTradeLtd/testify/_codegen
 * THIS FILE MUST NOT BE EDITED BY HAND
  */
 
 package require
 
 import (
-	assert "github.com/stretchr/testify/assert"
 	http "net/http"
 	url "net/url"
 	time "time"
+
+	assert "github.com/RTradeLtd/testify/assert"
 )
 
 // Condition uses a Comparison to assert a complex condition.
@@ -1599,6 +1600,17 @@ func Zerof(t TestingT, i interface{}, msg string, args ...interface{}) {
 		h.Helper()
 	}
 	if assert.Zerof(t, i, msg, args...) {
+		return
+	}
+	t.FailNow()
+}
+
+// OneOf asserts that have contains one of wants
+func OneOf(t TestingT, have interface{}, wants []interface{}, msgAndArgs ...interface{}) {
+	if h, ok := t.(tHelper); ok {
+		h.Helper()
+	}
+	if assert.ContainsOneOf(t, have, wants) {
 		return
 	}
 	t.FailNow()

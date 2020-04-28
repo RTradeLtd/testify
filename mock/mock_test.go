@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
+	"github.com/RTradeLtd/testify/assert"
+	"github.com/RTradeLtd/testify/require"
 )
 
 /*

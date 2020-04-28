@@ -747,6 +747,23 @@ func includeElement(list interface{}, element interface{}) (ok, found bool) {
 
 }
 
+// ContainsOneOf asserts that the specified value (have) contains one of (wants)
+func ContainsOneOf(t TestingT, have interface{}, wants []interface{}, msgAndArgs ...interface{}) bool {
+	if h, ok := t.(tHelper); ok {
+		h.Helper()
+	}
+	var contains bool
+	for _, want := range wants {
+		if reflect.DeepEqual(have, want) {
+			contains = true
+		}
+	}
+	if !contains {
+		return Fail(t, fmt.Sprintf("%#v not found in %#v", have, wants), msgAndArgs...)
+	}
+	return true
+}
+
 // Contains asserts that the specified string, list(array, slice...) or map contains the
 // specified substring or element.
 //
